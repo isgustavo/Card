@@ -23,7 +23,8 @@ class Card: UIView {
         content.autoresizingMask = [.FlexibleHeight, .FlexibleWidth]
         self.addSubview(content)
         
-
+        self.initHalfCircleIn(self.rightHalfCircle, xOffset: -5)
+        self.initHalfCircleIn(self.leftHalfCircle, xOffset: 45)
         
         self.layer.shadowColor = UIColor.grayColor().CGColor
         self.layer.shadowOpacity = 0.5
@@ -39,7 +40,34 @@ class Card: UIView {
         super.init(coder: aDecoder)
         
     }
-
+    
+    private func initHalfCircleIn(view: UIView, xOffset: CGFloat) {
+        
+        let overlayView = UIView(frame: CGRect(x: 0, y: 0, width: CGFloat(50.0), height: view.frame.height))
+        overlayView.alpha = 1
+        overlayView.backgroundColor = UIColor.whiteColor()
+        view.addSubview(overlayView)
+        
+        let maskLayer = CAShapeLayer()
+        
+        // Create a path with the rectangle in it.
+        let path = CGPathCreateMutable()
+        
+        let radius : CGFloat = 10
+        let yOffset : CGFloat = 15
+        CGPathAddArc(path, nil, overlayView.frame.width - radius/2 - xOffset, yOffset, radius, 0.0, 2 * 3.14, false)
+        CGPathAddRect(path, nil, CGRectMake(0, 0, overlayView.frame.width, overlayView.frame.height))
+        
+        maskLayer.backgroundColor = UIColor.blackColor().CGColor
+        
+        maskLayer.path = path;
+        maskLayer.fillRule = kCAFillRuleEvenOdd
+        
+        // Release the path since it's not covered by ARC.
+        overlayView.layer.mask = maskLayer
+        overlayView.clipsToBounds = true
+        
+    }
     
     
 }
