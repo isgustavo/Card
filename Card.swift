@@ -23,6 +23,13 @@ class Card: UIView {
         content.autoresizingMask = [.FlexibleHeight, .FlexibleWidth]
         self.addSubview(content)
         
+
+        
+        self.layer.shadowColor = UIColor.grayColor().CGColor
+        self.layer.shadowOpacity = 0.5
+        self.layer.shadowOffset = CGSizeZero
+        self.layer.shadowRadius = 10
+        self.layer.shouldRasterize = true
         
         self.alpha = 0
         
@@ -32,7 +39,6 @@ class Card: UIView {
         super.init(coder: aDecoder)
         
     }
-    
 
     
     
