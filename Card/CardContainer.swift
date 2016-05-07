@@ -58,28 +58,28 @@ class CardContainer: UIView {
     func getCurrentView() -> UIView {
         return self.currentViews.first!
     }
-
+    
     func loadNextView() {
         
         
         if let _ = self.dataSource {
             let index: Int = self.dataSource!.cardContainerViewNumberOfViewInIndex()
-        
-        
+            
+            
             if index != 0 && index == currentIndex {
                 // complete dragging?
             }
-        
+            
             if loadedIndex < index {
-        
-                let preloadViewCont = index <= self.viewCount ? index : self.viewCount
-        
-                for(var i: Int = currentViews.count; i < preloadViewCont; i += 1) {
-            
-                    let view = self.dataSource?.cardContainerViewNextViewWithIndex(i)
-            
-                    if let v = view {
                 
+                let preloadViewCont = index <= self.viewCount ? index : self.viewCount
+                
+                for(var i: Int = currentViews.count; i < preloadViewCont; i += 1) {
+                    
+                    let view = self.dataSource?.cardContainerViewNextViewWithIndex(i)
+                    
+                    if let v = view {
+                        
                         self.defaultFrame = v.frame
                         self.cardCenterX = v.center.x
                         self.cardCenterY = v.center.y
@@ -87,7 +87,7 @@ class CardContainer: UIView {
                         self.addSubview(v)
                         self.sendSubviewToBack(v)
                         currentViews.append(v)
-                
+                        
                         loadedIndex += 1
                     }
                 }
@@ -98,9 +98,6 @@ class CardContainer: UIView {
         
         let tapGesture = UISwipeGestureRecognizer(target: self, action:  #selector(CardContainer.handleCardGesture(_:)))
         tapGesture.direction = UISwipeGestureRecognizerDirection.Down
-        
-        
-        //let tapGesture = UITapGestureRecognizer(target: self, action: Selector("handleCardGesture:"))
         view.addGestureRecognizer(tapGesture)
         
     }
@@ -111,40 +108,34 @@ class CardContainer: UIView {
         for v in currentViews {
             
             if index == 2 {
-                
-                v.transform = CGAffineTransformIdentity
-                v.frame = CGRectMake(self.defaultFrame!.origin.x, self.defaultFrame!.origin.y - (self.cardMargin * 8) , self.self.defaultFrame!.size.width, self.defaultFrame!.size.height)
-                v.transform = CGAffineTransformScale(CGAffineTransformIdentity, CGFloat(0.87), CGFloat(0.96))
-                
+                UIView.animateWithDuration(0.1, delay: 0.0, options: UIViewAnimationOptions.CurveLinear, animations:  {
+                    v.transform = CGAffineTransformIdentity
+                    v.frame = CGRectMake(self.defaultFrame!.origin.x, self.defaultFrame!.origin.y - (self.cardMargin * 8) , self.self.defaultFrame!.size.width, self.defaultFrame!.size.height)
+                    v.transform = CGAffineTransformScale(CGAffineTransformIdentity, CGFloat(0.87), CGFloat(0.96))
+                    }, completion: { finished in
+                        v.alpha = 1
+                })
             } else if index == 1 {
                 
                 v.transform = CGAffineTransformIdentity
                 v.frame = CGRectMake(self.defaultFrame!.origin.x, self.defaultFrame!.origin.y - (self.cardMargin * 4) , self.self.defaultFrame!.size.width, self.defaultFrame!.size.height)
                 v.transform = CGAffineTransformScale(CGAffineTransformIdentity, CGFloat(0.93), CGFloat(0.98))
-                
+                v.alpha = 1
             } else if index == 0 {
                 
                 v.transform = CGAffineTransformIdentity
                 v.frame = self.defaultFrame!
+                v.alpha = 1
             }
             
             index += 1
             
         }
-        print(index)
-        
-    }
-    
-    func cardViewdrag(recognizer: UITapGestureRecognizer) {
-        //print("card")
-        
         
     }
     
     
     func handleCardGesture(recognizer: UITapGestureRecognizer) {
-        
-        print("card")
         
         let view = self.getCurrentView()
         
@@ -159,11 +150,11 @@ class CardContainer: UIView {
             self.cardViewDefaultScale()
             
             }, completion: { finished in
-            
+                
             }
         )
         
     }
-
-
+    
+    
 }

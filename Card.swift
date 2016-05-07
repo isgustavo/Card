@@ -9,9 +9,10 @@
 import UIKit
 
 class Card: UIView {
-
+    
     @IBOutlet weak var contentView: UIView?
-    @IBOutlet weak var mtext: UILabel!
+    @IBOutlet weak var rightHalfCircle: UIView!
+    @IBOutlet weak var leftHalfCircle: UIView!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -23,20 +24,16 @@ class Card: UIView {
         self.addSubview(content)
         
         
+        self.alpha = 0
         
     }
-    
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
-        NSBundle.mainBundle().loadNibNamed("Card", owner: self, options: nil)
-        guard let content = contentView else { return }
-        content.frame = self.bounds
-        content.autoresizingMask = [.FlexibleHeight, .FlexibleWidth]
-        self.addSubview(content)
     }
     
-    
 
+    
+    
 }

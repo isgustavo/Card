@@ -421,6 +421,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hi.gustavo.oliveira.Card;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -432,6 +433,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hi.gustavo.oliveira.Card;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -500,6 +502,7 @@
 				15E34E181CD1429E00690BF7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		15E34E191CD1429E00690BF7 /* Build configuration list for PBXNativeTarget "CardTests" */ = {
 			isa = XCConfigurationList;
@@ -508,6 +511,7 @@
 				15E34E1B1CD1429E00690BF7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		15E34E1C1CD1429E00690BF7 /* Build configuration list for PBXNativeTarget "CardUITests" */ = {
 			isa = XCConfigurationList;
@@ -516,6 +520,7 @@
 				15E34E1E1CD1429E00690BF7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

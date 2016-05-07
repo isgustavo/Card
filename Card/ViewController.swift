@@ -9,13 +9,13 @@
 import UIKit
 
 class ViewController: UIViewController, CardContainerDataSource {
-
+    
     private var container: CardContainer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-      
+        
         self.view.backgroundColor = UIColor(colorLiteralRed: 235, green: 235, blue: 235, alpha: 1)
         
         self.container = CardContainer()
@@ -31,32 +31,16 @@ class ViewController: UIViewController, CardContainerDataSource {
         
         self.container.reloadCardContainer()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
-    static var i: Int = 0
+    
     // MARK: - Data Source
     func cardContainerViewNextViewWithIndex(index: Int) -> UIView {
         
         let card: Card = Card(frame: CGRect(x: 15, y: 134, width: self.view.frame.size.width - 30, height: self.view.frame.size.width * 1.3))
-        
-        if let c = card as? Card {
-            c.mtext.text = "\(ViewController.i)"
-        }
-        
-        if ViewController.i == 0 {
-            card.contentView?.backgroundColor = UIColor.blackColor()
-        } else if ViewController.i == 1 {
-            card.contentView?.backgroundColor = UIColor.redColor()
-        }else{
-            card.contentView?.backgroundColor = UIColor.greenColor()
-        }
-        
-        ViewController.i += 1
         
         return card
         
@@ -66,4 +50,3 @@ class ViewController: UIViewController, CardContainerDataSource {
         return 7
     }
 }
-
